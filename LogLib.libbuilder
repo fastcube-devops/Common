@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Repository:repository xmlns:Repository="http://www.tibco.com/xmlns/repo/types/2002">
     <name name="LogLib">
-        <version>4</version>
+        <version>6</version>
         <author>FastCubeRmd2021</author>
-        <fileLocation>C:\tibcoProjects\Libs\LogLib1.projlib</fileLocation>
-        <resources>/ProcessDefinitions/LoggingProcess.process,/Schemas/LoggingSchema.xsd</resources>
+        <fileLocation>C:\Users\Dev\Documents\repos\Common\LogLib.projlib</fileLocation>
+        <resources>/Connections/DB_Connection.sharedjdbc,/Connections/JMS Connection.sharedjmscon,/ProcessDefinitions/LoggingProcess.process,/Schemas/LoggingSchema.xsd</resources>
     </name>
 </Repository:repository>

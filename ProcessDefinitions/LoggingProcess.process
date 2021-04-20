@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pfx="http://www.tibco.com/schemas/Logging/Schemas/Schema.xsd" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:tib="http://www.tibco.com/bw/xslt/custom-functions">
+<pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pfx="http://www.tibco.com/schemas/Logging/Schemas/Schema.xsd" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:ns="http://www.tibco.com/pe/WriteToLogActivitySchema" xmlns:tib="http://www.tibco.com/bw/xslt/custom-functions">
     <xs:import xmlns:xs="http://www.w3.org/2001/XMLSchema" namespace="http://www.tibco.com/schemas/Logging/Schemas/Schema.xsd" schemaLocation="/Schemas/LoggingSchema.xsd"/>
     <pd:name>ProcessDefinitions/LoggingProcess.process</pd:name>
     <pd:startName>Start</pd:startName>
     <pd:startType ref="pfx:LogInfo"/>
-    <pd:startX>150</pd:startX>
-    <pd:startY>64</pd:startY>
+    <pd:startX>122</pd:startX>
+    <pd:startY>92</pd:startY>
     <pd:returnBindings/>
     <pd:endName>End</pd:endName>
-    <pd:endX>450</pd:endX>
-    <pd:endY>64</pd:endY>
+    <pd:endX>574</pd:endX>
+    <pd:endY>90</pd:endY>
     <pd:errorSchemas/>
     <pd:processVariables/>
     <pd:targetNamespace>http://xmlns.example.com/1618321661452</pd:targetNamespace>
     <pd:activity name="LoggingDataInsert">
         <pd:type>com.tibco.plugin.jdbc.JDBCUpdateActivity</pd:type>
         <pd:resourceType>ae.activities.JDBCUpdateActivity</pd:resourceType>
-        <pd:x>274</pd:x>
-        <pd:y>55</pd:y>
+        <pd:x>368</pd:x>
+        <pd:y>92</pd:y>
         <config>
             <timeout>10</timeout>
             <commit>false</commit>
@@ -54,7 +54,7 @@
         <pd:inputBindings>
             <jdbcUpdateActivityInput>
                 <id_log>
-                    <xsl:value-of select="tib:timestamp()"/>
+                    <xsl:value-of select="concat($Start/pfx:LogInfo/pfx:idProcess,&quot;-&quot;,tib:timestamp())"/>
                 </id_log>
                 <idtech>
                     <xsl:value-of select="$Start/pfx:LogInfo/pfx:idtech"/>
@@ -74,9 +74,28 @@
             </jdbcUpdateActivityInput>
         </pd:inputBindings>
     </pd:activity>
+    <pd:activity name="Log">
+        <pd:type>com.tibco.pe.core.WriteToLogActivity</pd:type>
+        <pd:resourceType>ae.activities.log</pd:resourceType>
+        <pd:x>246</pd:x>
+        <pd:y>94</pd:y>
+        <config>
+            <role>User</role>
+        </config>
+        <pd:inputBindings>
+            <ns:ActivityInput>
+                <message>
+                    <xsl:value-of select="$Start/pfx:LogInfo/pfx:logmessage"/>
+                </message>
+                <msgCode>
+                    <xsl:value-of select="$Start/pfx:LogInfo/pfx:status"/>
+                </msgCode>
+            </ns:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
     <pd:transition>
         <pd:from>Start</pd:from>
-        <pd:to>LoggingDataInsert</pd:to>
+        <pd:to>Log</pd:to>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
         <pd:conditionType>always</pd:conditionType>
@@ -84,6 +103,13 @@
     <pd:transition>
         <pd:from>LoggingDataInsert</pd:from>
         <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Log</pd:from>
+        <pd:to>LoggingDataInsert</pd:to>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
         <pd:conditionType>always</pd:conditionType>

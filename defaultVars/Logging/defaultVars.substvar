@@ -3,27 +3,27 @@
 	<globalVariables>
 		<globalVariable>
 			<name>jdbcUrl</name>
-			<value>jdbc:oracle:thin:192.168.1.77:1521:xe</value>
+			<value>jdbc:oracle:thin:@localhost:1521:xe</value>
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1618325662606</modTime>
+			<modTime>1618905566190</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>jdbcpassword</name>
-			<value>user01</value>
+			<value>user03</value>
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1618321952480</modTime>
+			<modTime>1618905508272</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>jdbcuser</name>
-			<value>user01</value>
+			<value>user03</value>
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1618321952464</modTime>
+			<modTime>1618905508295</modTime>
 		</globalVariable>
 	</globalVariables>
 </repository>

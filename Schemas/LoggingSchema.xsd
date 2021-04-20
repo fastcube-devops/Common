@@ -12,13 +12,13 @@
 				<xs:element ref="idfonc"/>
 				<xs:element ref="status"/>
 				<xs:element ref="logmessage"/>
+				<xs:element ref="idProcess"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-
 	<xs:element name="idtech" type="xs:string"/>
 	<xs:element name="idfonc" type="xs:string"/>
 	<xs:element name="status" type="xs:string"/>
 	<xs:element name="logmessage" type="xs:string"/>
-	
+	<xs:element name="idProcess" type="xs:string"/>
 </xs:schema>
